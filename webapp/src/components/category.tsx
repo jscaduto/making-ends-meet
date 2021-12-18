@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { Grid, Slider, Typography } from '@mui/material';
 
 import usePrevious from '../hooks/usePrevious';
-import useSavings from '../hooks/useSavings';
 
 const marks = [
   {
@@ -29,7 +28,8 @@ function valuetext(value: number) {
 
 const handleChange = (
   value: number | number[],
-  previousValue: number,
+  previousValue: number = 0,
+  setValue: CallableFunction,
   updateSavings: CallableFunction,
 ) => {
   let newValue: number;
@@ -38,7 +38,8 @@ const handleChange = (
   } else {
     newValue = value[0];
   }
-  return updateSavings(newValue - previousValue);
+  setValue(newValue);
+  return updateSavings(previousValue - newValue);
 };
 
 type CategoryProps = {
@@ -47,8 +48,8 @@ type CategoryProps = {
 };
 
 export default ({ name, updateSavings }: CategoryProps) => {
-  const [value, setValue] = useState(0);
-  const previousValue = usePrevious(value);
+  const [value, setValue] = useState<number>(0);
+  const previousValue: number = usePrevious<number>(value);
   return (
     <Grid container>
       <Grid item xs={4}>
@@ -62,8 +63,8 @@ export default ({ name, updateSavings }: CategoryProps) => {
           marks={marks}
           max={3}
           min={0}
-          onChange={(event, value) =>
-            handleChange(value, previousValue, updateSavings)
+          onChangeCommitted={(event, value) =>
+            handleChange(value, previousValue, setValue, updateSavings)
           }
           step={1}
           valueLabelDisplay="off"

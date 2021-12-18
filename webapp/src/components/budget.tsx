@@ -1,9 +1,8 @@
 import { Grid } from '@mui/material';
-import { useState } from 'react';
 
 import Category from './category';
 
-const categories = [
+const categories: string[] = [
   'Housing',
   'Education',
   'Transportation',
@@ -14,7 +13,7 @@ const categories = [
 
 type BudgetProps = {
   updateSavings: CallableFunction;
-};
+}; 
 
 export default ({ updateSavings }: BudgetProps) => {
   return (
