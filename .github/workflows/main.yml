@@ -1,0 +1,57 @@
+name: Master Pipeline
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  workflow_dispatch:
+jobs:
+  build-webapp:
+    name: Build Webapp
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v2
+    - name: Use Node.js 17.x
+      uses: actions/setup-node@v1
+      with:
+        node-version: 17.x
+    - name: Install dependencies
+      run: cd webapp && npm install
+      env:
+        CI: true
+    - name: Generate build
+      run: cd webapp && npm run build
+      env:
+        CI: false
+    - name: Share artifact inside workflow
+      uses: actions/upload-artifact@v1
+      with:
+        name: build-webapp
+        path: webapp/build
+  deploy-webapp:
+    name: Upload to Amazon S3
+    needs: build-webapp
+    runs-on: ubuntu-latest
+    steps:
+    - name: Get artifact
+      uses: actions/download-artifact@v1
+      with:
+        name: build-webapp
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-2
+    - name: Deploy to S3
+      working-directory: build-webapp
+      run: aws s3 sync . s3://rmvp.scadu.to --acl public-read
+    - name: Invalidate CloudFront
+      uses: chetan/invalidate-cloudfront-action@v2
+      env:
+        DISTRIBUTION: ${{ secrets.DISTRIBUTION }}
+        PATHS: /*
+        AWS_REGION: us-east-2
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
