@@ -13,7 +13,7 @@ const categories: string[] = [
 
 type BudgetProps = {
   updateSavings: CallableFunction;
-}; 
+};
 
 export default ({ updateSavings }: BudgetProps) => {
   return (
