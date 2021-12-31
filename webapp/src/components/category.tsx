@@ -63,7 +63,7 @@ export default ({ name, updateSavings }: CategoryProps) => {
           marks={marks}
           max={3}
           min={0}
-          onChangeCommitted={(event, value) =>
+          onChange={(event, value) =>
             handleChange(value, previousValue, setValue, updateSavings)
           }
           step={1}
