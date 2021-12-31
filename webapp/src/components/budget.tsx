@@ -4,11 +4,11 @@ import Category from './category';
 
 const categories: string[] = [
   'Housing',
+  'Healthcare',
+  'Food',
   'Education',
   'Transportation',
-  'Food',
-  'Healthcare',
-  'Savings',
+  'Utilities',
 ];
 
 type BudgetProps = {
