@@ -29,6 +29,7 @@ function valuetext(value: number) {
 const handleChange = (
   value: number | number[],
   previousValue: number = 0,
+  savings: number,
   setValue: CallableFunction,
   updateSavings: CallableFunction,
 ) => {
@@ -38,16 +39,23 @@ const handleChange = (
   } else {
     newValue = value[0];
   }
-  setValue(newValue);
-  return updateSavings(previousValue - newValue);
+  const delta: number = previousValue - newValue;
+  if (savings + delta >= 0) {
+    setValue(newValue);
+    updateSavings(delta);
+  }
+  else {
+    setValue(previousValue);
+  }
 };
 
 type CategoryProps = {
   name: string;
+  savings: number;
   updateSavings: CallableFunction;
 };
 
-export default ({ name, updateSavings }: CategoryProps) => {
+export default ({ name, savings, updateSavings }: CategoryProps) => {
   const [value, setValue] = useState<number>(0);
   const previousValue: number = usePrevious<number>(value);
   return (
@@ -64,9 +72,10 @@ export default ({ name, updateSavings }: CategoryProps) => {
           max={3}
           min={0}
           onChange={(event, value) =>
-            handleChange(value, previousValue, setValue, updateSavings)
+            handleChange(value, previousValue, savings, setValue, updateSavings)
           }
           step={1}
+          value={value}
           valueLabelDisplay="off"
         />
       </Grid>

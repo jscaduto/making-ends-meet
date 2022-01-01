@@ -23,7 +23,7 @@ function App() {
         <p>Event: {currentEvent.description}</p>
         <p>Income: {currentEvent.income}</p>
         <Savings amount={savings} />
-        <Budget updateSavings={updateSavings} />
+        <Budget savings={savings} updateSavings={updateSavings} />
         <Button onClick={endRound} variant="outlined">End Round</Button>
       </Container>
     </div>
