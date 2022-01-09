@@ -18,15 +18,15 @@ const categories: Category[] = [
 ];
 
 const lifeEvents: LifeEvent[] = [
-  {description: 'start', income: 12},
-  {description: 'event 1', income: 11, scenario: (budget: Budget, income: number) => { return budget.healthcare >= 2 ? income : income - 2}},
-  {description: 'event 2', income: 10},
-  {description: 'event 3', income: 9},
-  {description: 'event 4', income: 8},
+  {description: 'start', income: 6},
+  {description: 'event 1', income: 6, scenario: (budget: Budget, income: number) => { return budget.healthcare >= 2 ? income : income - 2}},
+  {description: 'event 2', income: 6},
+  {description: 'event 3', income: 6},
+  {description: 'event 4', income: 6},
 ]
 
 function App() {
-  const initialSavings: number = 12;
+  const initialSavings: number = 6;
   const categoryNames: string[] = categories.map((category) => category.name);
   const [budget, setBudget] = useState<Budget>(new Budget(initialSavings));
   const [currentEvent, endRound] = useRounds(lifeEvents, budget, setBudget);
