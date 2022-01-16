@@ -18,8 +18,7 @@ export default (
         budget.savings += lifeEvents[nextRound].income;
       };
       setRound(nextRound);
-      setBudget(budget);
-      console.log({budget});
+      setBudget(new Budget(budget.savings));
     }
   };
   return [lifeEvents[currentRound], endRound] as const;
