@@ -2,7 +2,7 @@ import { Grid } from '@mui/material';
 
 import Budget from '../types/Budget';
 import Category from '../types/Category';
-import CategoryView from './CategoryView';
+import CategoryView from './CategoryAccordion';
 
 type BudgetViewProps = {
   budget: Budget;

@@ -2,7 +2,7 @@ import React from 'react';
 import { Accordion, AccordionDetails, AccordionSummary, Grid, Slider, Typography } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
-import CategoryOptionView from './CategoryOptionView';
+import CategoryOptionView from './CategoryOptionCard';
 import { COLOR } from '../constants'
 import Budget from '../types/Budget';
 import Category from '../types/Category';
