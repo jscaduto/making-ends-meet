@@ -26,12 +26,12 @@ export default ({ categoryOption }: CategoryOptionProps) => {
   });
   return (
     <Card sx={{ display: 'flex' }}>
-      <CardMedia
+      {/* <CardMedia
         component="img"
         sx={{ width: 100 }}
         image={categoryOption.icon}
         alt={categoryOption.icon}
-      />
+      /> */}
       <Box sx={{ display: 'flex', flexDirection: 'column' }}>
         <CardContent sx={{ flex: '1 0 auto' }}>
           <Typography component="div" variant="h6" color={color}>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Accordion, AccordionDetails, AccordionSummary, Grid, Slider, Typography } from '@mui/material';
+import { Accordion, AccordionDetails, AccordionSummary, Box, Grid, Paper, Slider, Stack, TextField, Typography } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 import CategoryOptionView from './CategoryOptionCard';
@@ -7,6 +7,14 @@ import { COLOR } from '../constants'
 import Budget from '../types/Budget';
 import Category from '../types/Category';
 import CategoryOption from '../types/CategoryOption';
+
+import { ReactComponent as ChildcareIcon } from './icons/childcare.svg';
+import { ReactComponent as EducationIcon } from './icons/education.svg';
+import { ReactComponent as FoodIcon } from './icons/food.svg';
+import { ReactComponent as HealthcareIcon } from './icons/healthcare.svg';
+import { ReactComponent as HousingIcon } from './icons/housing.svg';
+import { ReactComponent as TransportationIcon } from './icons/transportation.svg';
+import { ReactComponent as UtilitiesIcon } from './icons/utilities.svg';
 
 const marks = [
   {
@@ -89,6 +97,22 @@ export default ({ category, amount, budget, setBudget}: CategoryProps) => {
   } else {
     color = COLOR.blueDark;
   };
+  let icon;
+  if (category.name === 'childcare') {
+    icon = <ChildcareIcon />;
+  } else if (category.name === 'education') {
+    icon = <EducationIcon />;
+  } else if (category.name === 'food') {
+    icon = <FoodIcon />;
+  } else if (category.name === 'healthcare') {
+    icon = <HealthcareIcon />;
+  } else if (category.name === 'housing') {
+    icon = <HousingIcon />;
+  } else if (category.name === 'transportation') {
+    icon = <TransportationIcon />;
+  } else if (category.name === 'utilities') {
+    icon = <UtilitiesIcon />;
+  };
   let categoryOptionViews: JSX.Element[] = [];
   category.options.forEach((categoryOption: CategoryOption) => {
     categoryOptionViews.push((
@@ -101,28 +125,38 @@ export default ({ category, amount, budget, setBudget}: CategoryProps) => {
   });
   return (
     <Accordion expanded={expand}>
-      <AccordionSummary expandIcon={<ExpandMoreIcon onClick={toggleAcordion} />}>
-        <Grid container alignItems="center">
-          <Grid item xs={3}>
-            <Typography variant="h6">{category.displayName}</Typography>
+      <AccordionSummary sx={{ paddingLeft: 0 }} expandIcon={<ExpandMoreIcon onClick={toggleAcordion} />}>
+        <Grid container alignItems="center" justifyContent="center">
+          <Grid item xs={2}>
+            <Box sx={{ textAlign: "center" }}>{icon}</Box>
+          </Grid>
+          <Grid item sx={{ paddingRight: "25px" }} xs={2}>
+            <TextField disabled value={amount} inputProps={{style: { textAlign: 'center' } }} />
           </Grid>
           <Grid item xs={8}>
-            <Slider
-              aria-label={category.displayName}
-              getAriaValueText={valuetext}
-              marks={marks}
-              max={3}
-              min={1}
-              onChange={(event, value) =>
-                handleChange(category, value, budget, setBudget)
-              }
-              value={amount}
-              step={1}
-              valueLabelDisplay="off"
-              sx={{
-                color: color,
-              }}
-            />
+            <Stack>
+              <Box>
+                <Typography variant="h6">{category.displayName}</Typography>
+              </Box>
+              <Box sx={{ padding: "0 10px 0 0" }}>
+                <Slider
+                  aria-label={category.displayName}
+                  getAriaValueText={valuetext}
+                  marks={marks}
+                  max={3}
+                  min={1}
+                  onChange={(event, value) =>
+                    handleChange(category, value, budget, setBudget)
+                  }
+                  value={amount}
+                  step={1}
+                  valueLabelDisplay="off"
+                  sx={{
+                    color: color,
+                  }}
+                />
+              </Box>
+            </Stack>
           </Grid>
         </Grid>
       </AccordionSummary>

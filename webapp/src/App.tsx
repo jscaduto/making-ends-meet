@@ -18,7 +18,7 @@ function App() {
   const initialSavings: number = 6;
   const [budget, setBudget] = useState<Budget>(new Budget(initialSavings));
   const [lifeEvent, endRound] = useRounds(lifeEvents, budget, setBudget);
-  const [isModalOpen, setIsModalOpen] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleClick = () => {
     endRound();
@@ -26,7 +26,7 @@ function App() {
   };
 
   return (
-    <Grid container p={4} spacing={4} justifyContent="center" alignItems="flex-start" direction="row">
+    <Grid container p={2} spacing={4} direction="row">
       <Grid item xs={12}>
         <Header />
       </Grid>
@@ -35,15 +35,16 @@ function App() {
       </Grid>
       <Grid item xs={8}>
         <Paper>
-          <Grid container p={4} spacing={4} justifyContent="center" alignItems="flex-start" direction="row">
+          <Grid container p={2} spacing={2} direction="row">
             <Grid item xs={12}>
               <BudgetView budget={budget} categories={categories} setBudget={setBudget} />
             </Grid>
-            <Grid item xs={2}>
+            <Grid item xs={1.8}></Grid>
+            <Grid item xs={2} sx={{ padding: "0 10px 0 0" }}>
               <Savings amount={budget.savings} />
             </Grid>
-            <Grid item xs={8}>
-              <Typography sx={{color: COLOR.red}}>* Be careful about where you place your credits, as there may be risks associated with the choices you make.</Typography>
+            <Grid item xs={6}>
+              <Typography sx={{ color: COLOR.red, fontSize: ".9rem" }}>* Be careful about where you place your credits, as there may be risks associated with the choices you make.</Typography>
             </Grid>
             <Grid item xs={2}>
               <EventModal lifeEvent={lifeEvent} modalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}/>

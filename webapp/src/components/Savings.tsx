@@ -8,7 +8,7 @@ export default ({ amount }: SavingsProps) => {
   return (
     <Grid container direction="column">
       <Grid item xs={8}>
-        <TextField disabled fullWidth label="Remaining" value={amount} id="fullWidth"/>
+        <TextField disabled label="Remaining" value={amount} inputProps={{style: { textAlign: 'center' }}} />
       </Grid>
     </Grid>
   );
