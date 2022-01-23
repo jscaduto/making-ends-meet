@@ -4,12 +4,12 @@ export default class Budget {
   constructor(
     public savings: number = 0,
     public housing: number = 1,
-    public healthcare: number = 1,
+    public healthcare: number = 0,
     public food: number = 1,
     public education: number = 1,
     public transportation: number = 1,
-    public utilities: number = 1,
-    public childcare: number = 1,
+    public utilities: number = 2,
+    public childcare: number = 0,
   ) {
     this.savings = savings;
     this.housing = housing;

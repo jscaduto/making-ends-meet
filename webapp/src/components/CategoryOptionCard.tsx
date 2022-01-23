@@ -5,13 +5,14 @@ import CategoryOption from '../types/CategoryOption';
 
 type CategoryOptionProps = {
   categoryOption: CategoryOption;
+  index: number;
 };
 
-export default ({ categoryOption }: CategoryOptionProps) => {
+export default ({ categoryOption, index }: CategoryOptionProps) => {
   let color: string;
-  if (categoryOption.cost === 1) {
+  if (index === 0) {
     color = COLOR.red;
-  } else if (categoryOption.cost === 2) {
+  } else if (index === 1) {
     color = COLOR.yellow;
   } else {
     color = COLOR.blueDark;

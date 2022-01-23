@@ -16,20 +16,22 @@ import { ReactComponent as HousingIcon } from './icons/housing.svg';
 import { ReactComponent as TransportationIcon } from './icons/transportation.svg';
 import { ReactComponent as UtilitiesIcon } from './icons/utilities.svg';
 
-const marks = [
-  {
-    value: 1,
-    label: '1',
-  },
-  {
-    value: 2,
-    label: '2',
-  },
-  {
-    value: 3,
-    label: '3',
-  },
-];
+function generateMarks(categoryOptions: CategoryOption[]) {
+  return  [
+    {
+      value: categoryOptions[0].cost,
+      label: categoryOptions[0].cost,
+    },
+    {
+      value: categoryOptions[1].cost,
+      label: categoryOptions[1].cost,
+    },
+    {
+      value: categoryOptions[2].cost,
+      label: categoryOptions[2].cost,
+    },
+  ];
+};
 
 function valuetext(value: number) {
   return `${value}`;
@@ -47,7 +49,7 @@ const handleChange = (
     newValue = value;
   } else {
     newValue = value[0];
-  }
+  };
   const delta: number = currentValue - newValue;
   const newSavings: number = budget.savings + delta;
   if (newSavings >= 0) {
@@ -59,10 +61,11 @@ const handleChange = (
       budget.education,
       budget.transportation,
       budget.utilities,
+      budget.childcare,
     );
     newBudget[category.name] = newValue;
     setBudget(newBudget);
-  } else if (newSavings === -1 && delta === -2) {
+  } else if (newSavings < 0 && delta === -2) {
     const newBudget: Budget = new Budget(
       newSavings + 1,
       budget.housing,
@@ -85,14 +88,15 @@ type CategoryProps = {
 };
 
 export default ({ category, amount, budget, setBudget}: CategoryProps) => {
+  console.log(budget);
   const [expand, setExpand] = React.useState(false);
   const toggleAcordion = () => {
     setExpand((prev) => !prev);
   };
   let color: string;
-  if (amount === 1) {
+  if (amount === category.options[0].cost) {
     color = COLOR.red;
-  } else if (amount === 2) {
+  } else if (amount === category.options[1].cost) {
     color = COLOR.yellow;
   } else {
     color = COLOR.blueDark;
@@ -114,11 +118,12 @@ export default ({ category, amount, budget, setBudget}: CategoryProps) => {
     icon = <UtilitiesIcon />;
   };
   let categoryOptionViews: JSX.Element[] = [];
-  category.options.forEach((categoryOption: CategoryOption) => {
+  category.options.forEach((categoryOption: CategoryOption, index: number) => {
     categoryOptionViews.push((
       <Grid item xs={4}>
         <CategoryOptionView
           categoryOption={categoryOption}
+          index={index}
         />
       </Grid>
     ));
@@ -142,14 +147,14 @@ export default ({ category, amount, budget, setBudget}: CategoryProps) => {
                 <Slider
                   aria-label={category.displayName}
                   getAriaValueText={valuetext}
-                  marks={marks}
-                  max={3}
-                  min={1}
+                  marks={generateMarks(category.options)}
+                  max={category.options[2].cost}
+                  min={category.options[0].cost}
                   onChange={(event, value) =>
                     handleChange(category, value, budget, setBudget)
                   }
+                  step={null}
                   value={amount}
-                  step={1}
                   valueLabelDisplay="off"
                   sx={{
                     color: color,
