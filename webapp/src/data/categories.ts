@@ -255,6 +255,36 @@ const categories: Category[] = [
       },
     ],
   },
+  {
+    name: 'childcare',
+    displayName: 'Childcare',
+    options: [
+      {
+        title: 'Difficult',
+        icon: '',
+        description: [
+          'No childcare. Rely on availability and willingness of neighborhood parents and and family.',
+        ],
+        cost: 1,
+      },
+      {
+        title: 'Limited',
+        icon: '',
+        description: [
+          'Unaccredited, Unlicensed neighbor with an off-the-books childcare side hustle.',
+        ],
+        cost: 2,
+      },
+      {
+        title: 'Convenient',
+        icon: '',
+        description: [
+          'Accredited, safe, reliable childcare facility.',
+        ],
+        cost: 3,
+      },
+    ],
+  },
 ];
 
 export default categories;

@@ -9,6 +9,7 @@ export default class Budget {
     public education: number = 1,
     public transportation: number = 1,
     public utilities: number = 1,
+    public childcare: number = 1,
   ) {
     this.savings = savings;
     this.housing = housing;
@@ -17,6 +18,7 @@ export default class Budget {
     this.education = education;
     this.transportation = transportation;
     this.utilities = utilities;
+    this.childcare = childcare;
   }
 
   getValues(): Map<string, number> {
@@ -27,6 +29,7 @@ export default class Budget {
       ['education', this.education],
       ['transportation', this.transportation],
       ['utilities', this.utilities],
+      ['childcare', this.childcare],
     ]);
   }
 }
