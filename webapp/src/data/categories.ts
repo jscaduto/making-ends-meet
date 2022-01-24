@@ -1,10 +1,9 @@
 import Category from '../types/Category';
 
 const categories: Category[] = [
-  {
-    name: 'housing',
-    displayName: 'Housing',
-    options: [
+  new Category(
+    'housing',
+    [
       {
         title: 'Difficult',
         icon: 'housing-difficult.png',
@@ -43,11 +42,10 @@ const categories: Category[] = [
         cost: 3,
       },
     ],
-  },
-  {
-    name: 'healthcare',
-    displayName: 'Healthcare',
-    options: [
+  ),
+  new Category(
+    'healthcare',
+    [
       {
         title: 'Difficult',
         icon: '',
@@ -74,11 +72,10 @@ const categories: Category[] = [
         cost: 4,
       },
     ],
-  },
-  {
-    name: 'food',
-    displayName: 'Food',
-    options: [
+  ),
+  new Category(
+    'food',
+    [
       {
         title: 'Difficult',
         icon: '',
@@ -109,11 +106,10 @@ const categories: Category[] = [
         cost: 3,
       },
     ],
-  },
-  {
-    name: 'education',
-    displayName: 'Education',
-    options: [
+  ),
+  new Category(
+    'education',
+    [
       {
         title: 'Difficult',
         icon: '',
@@ -145,11 +141,10 @@ const categories: Category[] = [
         cost: 4,
       },
     ],
-  },
-  {
-    name: 'transportation',
-    displayName: 'Transportation',
-    options: [
+  ),
+  new Category(
+    'transportation',
+    [
       {
         title: 'Difficult',
         icon: '',
@@ -180,11 +175,10 @@ const categories: Category[] = [
         cost: 4,
       },
     ],
-  },
-  {
-    name: 'utilities',
-    displayName: 'Utilities',
-    options: [
+  ),
+  new Category(
+    'utilities',
+    [
       {
         title: 'Difficult',
         icon: '',
@@ -223,11 +217,10 @@ const categories: Category[] = [
         cost: 4,
       },
     ],
-  },
-  {
-    name: 'childcare',
-    displayName: 'Childcare',
-    options: [
+  ),
+  new Category(
+    'childcare',
+    [
       {
         title: 'Difficult',
         icon: '',
@@ -253,7 +246,7 @@ const categories: Category[] = [
         cost: 4,
       },
     ],
-  },
+  ),
 ];
 
 export default categories;

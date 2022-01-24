@@ -18,7 +18,7 @@ function App() {
   const initialSavings: number = 6;
   const [budget, setBudget] = useState<Budget>(new Budget(initialSavings));
   const [lifeEvent, endRound] = useRounds(lifeEvents, budget, setBudget);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(true);
 
   const handleClick = () => {
     endRound();

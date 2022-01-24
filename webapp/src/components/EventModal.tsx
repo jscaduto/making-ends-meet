@@ -1,6 +1,8 @@
-import { Dialog, DialogContent, DialogTitle, Typography } from '@mui/material';
+import { Box, Dialog, DialogContent, DialogTitle, Paper, Typography } from '@mui/material';
 
 import LifeEvent from '../types/LifeEvent';
+
+import { COLOR } from '../constants';
 
 type EventModalProps = {
   lifeEvent: LifeEvent;
@@ -14,14 +16,25 @@ export default ({ lifeEvent, modalOpen, setIsModalOpen }: EventModalProps) => {
   };
   
   return (
-    <Dialog open={modalOpen} onClose={onClose}>
-      <DialogTitle>
-        {lifeEvent.title}
+    <Dialog open={modalOpen} onClose={onClose}  PaperProps={{
+      sx: {
+        minHeight: '80vh',
+        maxHeight: '80vh',
+      }
+    }}>
+      <DialogTitle sx={{ backgroundColor: COLOR.blueLight }}>
+        <Paper>
+          <Typography>
+            {lifeEvent.title}
+          </Typography>  
+        </Paper>
       </DialogTitle>
-      <DialogContent>
-        <Typography>
-          {lifeEvent.description}
-        </Typography>
+      <DialogContent sx={{ backgroundColor: COLOR.blueLight }}>
+        <Paper>
+          <Typography>
+            {lifeEvent.description}
+          </Typography>
+        </Paper>
       </DialogContent>
     </Dialog>
   );

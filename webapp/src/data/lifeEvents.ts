@@ -2,7 +2,13 @@ import LifeEvent from '../types/LifeEvent';
 import Budget from '../types/Budget';
 
 const lifeEvents: LifeEvent[] = [
-  {title: 'Start', description: 'start', income: 6},
+  {
+    title: 'YOU ARE THE HART FAMILY',
+    description: "You live with your partner in Kansas, and together you have two children, ages 3 and 10. You work 20 hours per week in order to complete an Associate's Degree, while your partner works 40 hours per week."
+      + " Kansas has no minimum wage law, so you both earn the federal hourly minimum wage of $7.25, bringing your family's income to: $22,620/year."
+      + " How will you provide for your family while living on the poverty line?",
+    income: 6,
+  },
   {
     title: 'UNEXPECTED CHALLENGE: HEALTHCARE',
     description: 'You cannot remember the last time you received dental care, and a pain in your tooth is severe. After visiting the dentist, you learn that you need emergency dental surgery.',

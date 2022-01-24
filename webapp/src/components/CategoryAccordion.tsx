@@ -65,18 +65,24 @@ const handleChange = (
     );
     newBudget[category.name] = newValue;
     setBudget(newBudget);
-  } else if (newSavings < 0 && delta === -2) {
-    const newBudget: Budget = new Budget(
-      newSavings + 1,
-      budget.housing,
-      budget.healthcare,
-      budget.food,
-      budget.education,
-      budget.transportation,
-      budget.utilities,
-    );
-    newBudget[category.name] = newValue - 1;
-    setBudget(newBudget);
+  } else if (newSavings < 0) {
+    console.log({newSavings});
+    const selectedOptionIndex = category.getOptionIndexByCost(newValue);
+    console.log({selectedOptionIndex});
+    if (selectedOptionIndex === 2 && (budget.savings - category.options[1].cost) >= 0) {
+      const newBudget: Budget = new Budget(
+        budget.savings - category.options[1].cost,
+        budget.housing,
+        budget.healthcare,
+        budget.food,
+        budget.education,
+        budget.transportation,
+        budget.utilities,
+        budget.childcare,
+      );
+      newBudget[category.name] = category.options[1].cost;
+      setBudget(newBudget);
+    }
   }
 };
 
