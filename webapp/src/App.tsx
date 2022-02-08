@@ -46,7 +46,7 @@ function App() {
                 <Typography sx={{ color: COLOR.red, fontSize: ".9rem" }}>* Be careful about where you place your credits, as there may be risks associated with the choices you make.</Typography>
               </Grid>
               <Grid item xs={2}>
-                <EventModal lifeEvent={lifeEvent} modalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}/>
+                <EventModal budget={budget} lifeEvent={lifeEvent} modalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}/>
                 <Button onClick={handleClick} variant="outlined">{"Next >"}</Button>
               </Grid>
             </Grid>

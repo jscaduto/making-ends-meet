@@ -23,13 +23,13 @@ const lifeEvents: LifeEvent[] = [
     title: 'UNEXPECTED BENEFIT: UTILITY ASSISTANCE',
     description: "While talking with your friend about how expensive your utility bills are, they told you about calling 2-1-1: a free and confidential service that helps people across the U.S. find the local resources they need. After calling, 2-1-1 found a program in which you qualify to receive financial assistance with your utility bills, saving you 2 credits in next month's budget.",
     income: 8,
-    outcomes: 'You will start next month with an extra 2 credits.',
+    outcomes: ['You will start next month with an extra 2 credits.'],
   },
   {
     title: 'UNEXPECTED CHALLENGE: JOB LOSS',
     description: "You were just laid off from your part-time job with no explanation. Losing your income has drastically hurt next month's budget, leaving just 8 Credits of income to pay the bills.",
     income: 2,
-    outcomes: 'You will start next month with a 4 less credits.',
+    outcomes: ['You will start next month with a 4 less credits.'],
   },
 ];
 
