@@ -18,7 +18,6 @@ export default (
         budget.savings += lifeEvents[nextRound].income;
       };
       setRound(nextRound);
-      setBudget(new Budget(budget.savings));
     }
   };
   return [lifeEvents[currentRound], endRound] as const;
